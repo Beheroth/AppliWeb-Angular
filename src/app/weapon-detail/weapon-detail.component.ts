@@ -30,6 +30,10 @@ export class WeaponDetailComponent implements OnInit {
       this.weaponService.getWeapon(id).subscribe(weapon => this.weapon = weapon);
   }
 
+  save(): void{
+      this.weaponService.updateWeapon(this.weapon).subscribe(() => this.goBack());
+  }
+
   goBack(): void {
       this.location.back();
   }
