@@ -1,0 +1,6 @@
+<h3>Top Weapons</h3>
+<a *ngFor="let weapon of weapons" class="col-1-4" routerLink="/detail/{{weapon.id}}">
+    <div class="module weapon">
+        <h4>{{weapon.name}}</h4>
+    </div>
+</a>
