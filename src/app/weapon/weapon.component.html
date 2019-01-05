@@ -1,9 +1,28 @@
-<h2>My Weapons</h2>
-<ul class="weapons">
-    <li *ngFor="let weapon of weapons">
-        <a routerLink="/detail/{{weapon.id}}">
-            <span class="badge">{{weapon.id}} </span> {{weapon.name}}
-        </a>
-    </li>
-</ul>
-<app-weapon-detail [weapon]="selectedWeapon"></app-weapon-detail>
+<div>
+    <h2>My Weapons</h2>
+    <ul class="weapons">
+        <li *ngFor="let weapon of weapons">
+            <a routerLink="/detail/{{weapon.id}}">
+                <span class="badge">{{weapon.id}} </span> {{weapon.name}}
+            </a>
+            <button class="delete" title="delete weapon" (click)="delete(weapon)">x</button>
+        </li>
+    </ul>
+</div>
+<div>
+    <h2>Create a Weapon</h2>
+
+    <label>Weapon name:
+        <input #WeaponName />
+    </label>
+    <br>
+    <label>Weapon damage:
+        <input #WeaponDamage />
+    </label>
+    <br>
+
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(WeaponName.value, WeaponDamage.value); WeaponName.value=''; WeaponDamage.value='';">
+        Add
+    </button>
+</div>

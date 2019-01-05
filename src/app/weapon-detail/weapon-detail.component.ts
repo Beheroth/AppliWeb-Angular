@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Weapon } from '../Weapon';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { Weapon } from '../models/Weapon';
 import { WeaponService } from '../weapon.service';
 
 @Component({
@@ -30,8 +30,12 @@ export class WeaponDetailComponent implements OnInit {
       this.weaponService.getWeapon(id).subscribe(weapon => this.weapon = weapon);
   }
 
-  save(): void{
-      this.weaponService.updateWeapon(this.weapon).subscribe(() => this.goBack());
+  save() : void {
+      this.weaponService.updateWeapon(this.weapon).subscribe(() =>  this.goBack());
+  }
+
+  delete() : void {
+      this.weaponService.deleteWeapon(this.weapon).subscribe(() => this.goBack());
   }
 
   goBack(): void {

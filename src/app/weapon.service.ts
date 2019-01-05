@@ -24,43 +24,62 @@ export class WeaponService {
         private messageService : MessageService,
         private http: HttpClient) { }
 
-    AgetWeapons(): Observable< Weapon[] > {
+    mockGetWeapons(): Observable< Weapon[] > {
         this.messageService.add('WeaponService: fetched weapons');
         return of(WEAPONS);
     }
 
-    AgetWeapon(id: number): Observable<Weapon> {
+    mockGetWeapon(id: number): Observable<Weapon> {
         this.messageService.add(`WeaponService: fetched weapon id=${id}`);
         return of(WEAPONS.find(weapon => weapon.id === id));
     }
 
     getWeapons() : Observable< Weapon[] > {
-        //this.messageService.add('WeaponService: coucou');
         return this.http.get<Weapon[]>(this.weaponsUrl + '/',  {responseType: 'json'}).pipe(
-            tap(_=> this.log('fetched weapons')),
-            catchError(this.handleError('getWeapons', []))
+            tap(
+                //_=> this.log('fetched weapons')
+            ), catchError(this.handleError('getWeapons', []))
         );
     }
 
-    getWeapon( id: number ): Observable<Weapon> {
+    getWeapon( id : number ): Observable<Weapon> {
         const url = `${this.weaponsUrl}/${id}`;
         return this.http.get<Weapon>(url, {responseType: 'json'}).pipe(
-            tap(_ => this.log(`fetched weapon id=${id}`)),
-            catchError(this.handleError<Weapon>(`getWeapon id=${id}`))
+            tap(
+                //_ => this.log(`fetched weapon id=${id}`)
+            ), catchError(this.handleError<Weapon>(`getWeapon id=${id}`))
         );
     }
 
     updateWeapon(weapon : Weapon): Observable<any> {
         const url = `${this.weaponsUrl}/${weapon.id}/edit`;
-        this.log(url);
         return this.http.put(url, weapon, httpOptions).pipe(
-            tap(_ => this.log(`update weapon id=${weapon.id}`)),
-            catchError(this.handleError<any>(`updateWeapon id=${weapon.id}`))
+            tap(
+                //_ => this.log(`update weapon id=${weapon.id}`)
+            ), catchError(this.handleError<any>(`updateWeapon id=${weapon.id}`))
+        );
+    }
+
+    addWeapon(weapon : Weapon): Observable<Weapon> {
+        const url = `${this.weaponsUrl}/new`;
+        return this.http.post<Weapon>(url, weapon, httpOptions).pipe(
+            tap(
+                //(rweapon : Weapon) => this.log(`added weapon w/ id=${rweapon.id}`)
+            ), catchError(this.handleError<Weapon>('addWeapon'))
+        );
+    }
+
+    deleteWeapon (weapon : Weapon): Observable<any> {
+        const url = `${this.weaponsUrl}/${weapon.id}`;
+        return this.http.delete<Weapon>(url, httpOptions).pipe(
+            tap(
+                //_ => this.log(`deleted weapon id=${weapon.id}`)
+            ), catchError(this.handleError<Weapon>('deleteWeapon'))
         );
     }
 
     private log(message: string) {
-        this.messageService.add(`WeaponService: ${message}`);
+        this.messageService.add(`WS: ${message}`);
     }
 
     private handleError<T> (operation = 'operation', result?: T) {

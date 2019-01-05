@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Weapon } from '../Weapon';
+import { Weapon } from '../models/Weapon';
 import { WeaponService } from '../weapon.service';
 
 @Component({
