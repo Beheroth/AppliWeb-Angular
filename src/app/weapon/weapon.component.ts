@@ -7,7 +7,7 @@ import { WeaponService } from '../weapon.service';
 @Component({
   selector: 'app-weapon',
   templateUrl: './weapon.component.html',
-  styleUrls: ['./weapon.component.css']
+  styleUrls: ['../app.component.css']
 })
 export class WeaponComponent implements OnInit {
     constructor(private weaponService: WeaponService) { }

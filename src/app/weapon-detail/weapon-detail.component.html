@@ -1,15 +1,14 @@
 <div *ngIf="weapon">
-    <h2>{{weapon.name | uppercase}} Details</h2>
+    <h2>{{weapon.name}} Details</h2>
     <div>
-        <span>id:</span>{{weapon.id}}
-    </div>
-    <div>
-        <label>name:
-            <input [(ngModel)]="weapon.name" placeholder="name">
-            <input [(ngModel)]="weapon.damage" placeholder="damage">
+        <label>Name:<input [(ngModel)]="weapon.name" placeholder="name">
+        </label>
+        <label>Damage:<input [(ngModel)]="weapon.damage" placeholder="damage">
         </label>
     </div>
-    <button class="save" (click)="save()">Save</button>
-    <button (click)="delete()">Delete</button>
-    <button (click)="goBack()">Back</button>
+    <div>
+        <button class="save" (click)="save()">Save</button>
+        <button (click)="delete()">Delete</button>
+        <button (click)="goBack()">Back</button>
+    </div>
 </div>

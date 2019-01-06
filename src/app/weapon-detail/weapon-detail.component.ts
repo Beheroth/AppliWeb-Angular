@@ -9,7 +9,7 @@ import { WeaponService } from '../weapon.service';
 @Component({
     selector: 'app-weapon-detail',
     templateUrl: './weapon-detail.component.html',
-    styleUrls: ['./weapon-detail.component.css']
+    styleUrls: ['../app.component.css']
 })
 export class WeaponDetailComponent implements OnInit {
 

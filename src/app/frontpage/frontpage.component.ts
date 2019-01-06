@@ -6,7 +6,7 @@ import { ScenarioService } from '../scenario.service';
 @Component({
     selector: 'app-frontpage',
     templateUrl: './frontpage.component.html',
-    styleUrls: ['./frontpage.component.css']
+    styleUrls: ['../app.component.css']
 })
 export class FrontpageComponent implements OnInit {
 
