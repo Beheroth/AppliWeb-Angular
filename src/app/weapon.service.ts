@@ -79,7 +79,7 @@ export class WeaponService {
     }
 
     private log(message: string) {
-        this.messageService.add(`WS: ${message}`);
+        this.messageService.add(`WeaponService: ${message}`);
     }
 
     private handleError<T> (operation = 'operation', result?: T) {

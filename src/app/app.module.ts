@@ -9,6 +9,7 @@ import { WeaponDetailComponent } from './weapon-detail/weapon-detail.component';
 import { MessageComponent } from './message/message.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FrontpageComponent } from './frontpage/frontpage.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     WeaponComponent,
     WeaponDetailComponent,
     DashboardComponent,
-    MessageComponent
+    MessageComponent,
+    FrontpageComponent
 
   ],
   imports: [

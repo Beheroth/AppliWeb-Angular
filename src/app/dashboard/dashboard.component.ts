@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Weapon } from '../models/Weapon';
-import { WeaponService } from '../weapon.service';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+import { Scenario } from '../models/Scenario';
+import { ScenarioService } from '../scenario.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,15 +13,33 @@ import { WeaponService } from '../weapon.service';
 })
 export class DashboardComponent implements OnInit {
 
-    weapons: Weapon[] = [];
+    constructor(
+        private route: ActivatedRoute,
+        private scenarioService: ScenarioService,
+        private location: Location
+    ) { }
 
-    constructor(private weaponService : WeaponService) { }
+    @Input() scenario: Scenario;
 
     ngOnInit() {
-        this.getWeapons();
+        this.getScenario();
     }
 
-    getWeapons():void{
-        this.weaponService.getWeapons().subscribe(weapons => this.weapons = weapons.slice(0,4));
+    getScenario() : void {
+        const id = +this.route.snapshot.paramMap.get('id');
+        this.scenarioService.getScenario(id).subscribe(scenario => this.scenario = scenario);
     }
+
+    save() : void {
+        this.scenarioService.updateScenario(this.scenario).subscribe();
+    }
+
+    delete() : void {
+        this.scenarioService.deleteScenario(this.scenario).subscribe(() => this.goBack());
+    }
+
+    goBack(): void {
+        this.location.back();
+    }
+
 }

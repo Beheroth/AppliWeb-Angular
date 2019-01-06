@@ -13,13 +13,11 @@
     <h2>Create a Weapon</h2>
 
     <label>Weapon name:
-        <input #WeaponName />
+        <input #WeaponName /><br>
     </label>
-    <br>
     <label>Weapon damage:
-        <input #WeaponDamage />
+        <input #WeaponDamage /><br>
     </label>
-    <br>
 
     <!-- (click) passes input value to add() and then clears the input -->
     <button (click)="add(WeaponName.value, WeaponDamage.value); WeaponName.value=''; WeaponDamage.value='';">

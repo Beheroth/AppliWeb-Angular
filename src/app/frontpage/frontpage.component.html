@@ -1,0 +1,40 @@
+<h1>Welcome to RPG DashBoard</h1>
+<div>
+    <h2>Scenarios</h2>
+    <table class="scenarios" style="width 100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>GM</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let scenario of scenarios">
+                <th>{{scenario.id}}</th>
+                <th routerLink="/scenario/{{scenario.id}}">{{scenario.name}}</th>
+                <th>{{scenario.gM}}</th>
+                <th><button class="delete" title="delete scenario" (click)="delete(scenario)">✖</button></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h3>Create a New Scenario</h3>
+
+    <label>Scenario name:
+        <input #ScenarioName />
+    </label>
+    <br>
+    <label>GM name:
+        <input #ScenarioGM />
+    </label>
+    <br>
+
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(ScenarioName.value, ScenarioGM.value); ScenarioGM.value=''; ScenarioName.value='';">
+        Create
+    </button>
+</div>

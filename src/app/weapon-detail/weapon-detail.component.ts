@@ -7,38 +7,38 @@ import { Weapon } from '../models/Weapon';
 import { WeaponService } from '../weapon.service';
 
 @Component({
-  selector: 'app-weapon-detail',
-  templateUrl: './weapon-detail.component.html',
-  styleUrls: ['./weapon-detail.component.css']
+    selector: 'app-weapon-detail',
+    templateUrl: './weapon-detail.component.html',
+    styleUrls: ['./weapon-detail.component.css']
 })
 export class WeaponDetailComponent implements OnInit {
 
-  constructor(
-      private route: ActivatedRoute,
-      private weaponService: WeaponService,
-      private location: Location
-  ) { }
+    constructor(
+        private route: ActivatedRoute,
+        private weaponService: WeaponService,
+        private location: Location
+    ) { }
 
-  @Input() weapon: Weapon;
+    @Input() weapon: Weapon;
 
-  ngOnInit(): void {
-      this.getWeapon();
-  }
+    ngOnInit(): void {
+        this.getWeapon();
+    }
 
-  getWeapon(): void {
-      const id = +this.route.snapshot.paramMap.get('id');
-      this.weaponService.getWeapon(id).subscribe(weapon => this.weapon = weapon);
-  }
+    getWeapon(): void {
+        const id = +this.route.snapshot.paramMap.get('id');
+        this.weaponService.getWeapon(id).subscribe(weapon => this.weapon = weapon);
+    }
 
-  save() : void {
-      this.weaponService.updateWeapon(this.weapon).subscribe(() =>  this.goBack());
-  }
+    save() : void {
+        this.weaponService.updateWeapon(this.weapon).subscribe(() =>  this.goBack());
+    }
 
-  delete() : void {
-      this.weaponService.deleteWeapon(this.weapon).subscribe(() => this.goBack());
-  }
+    delete() : void {
+        this.weaponService.deleteWeapon(this.weapon).subscribe(() => this.goBack());
+    }
 
-  goBack(): void {
-      this.location.back();
-  }
+    goBack(): void {
+        this.location.back();
+    }
 }
